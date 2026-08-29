@@ -1,4 +1,3 @@
-// app/components/Hero.tsx
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,23 +5,15 @@ interface HeroProps {
   name: string;
   title: string;
   bio: string;
-  availableForTheMarket?: boolean;
 }
 
-export function Hero({ name, title, bio, availableForTheMarket = true }: HeroProps) {
+export function Hero({ name, title, bio}: HeroProps) {
   return (
     <section className="py-12 md:py-20 px-6 max-w-5xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
         
         {/* Lado Esquerdo: Informações Pessoais */}
         <div className="md:col-span-7 flex flex-col items-start order-2 md:order-1">
-          {availableForTheMarket && (
-            <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Disponível para oportunidades
-            </div>
-          )}
-
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-900 dark:text-white uppercase mb-2">
             {name}
           </h1>
