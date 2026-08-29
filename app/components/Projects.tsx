@@ -1,20 +1,24 @@
 'use client';
 
 import { useState } from "react";
-import { PORTFOLIO_DATA } from "./constants/portfolio";
+import { Project } from "../types/project";
 
-export function Projects() {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+export function Projects({ projects }: ProjectsProps) {
   const [filtroAtivo, setFiltroAtivo] = useState<string>("Todos");
 
   const todasAsTags = Array.from(
-    new Set(PORTFOLIO_DATA.projects.flatMap((projeto) => projeto.tags))
+    new Set(projects.flatMap((projeto) => projeto.tags))
   );
   
   const tagsParaFiltro = ["Todos", ...todasAsTags];
 
   const projetosFiltrados = filtroAtivo === "Todos" 
-    ? PORTFOLIO_DATA.projects 
-    : PORTFOLIO_DATA.projects.filter(projeto => projeto.tags.includes(filtroAtivo));
+    ? projects 
+    : projects.filter(projeto => projeto.tags.includes(filtroAtivo));
 
   return (
     <section className="py-12 px-6 max-w-4xl mx-auto">
@@ -45,7 +49,7 @@ export function Projects() {
             className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-between shadow-sm"
           >
             <div>
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+              <h3 className="text-xl font-semibold capitalize text-slate-900 dark:text-white mb-2">
                 {projeto.title}
               </h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
@@ -87,12 +91,6 @@ export function Projects() {
             </div>
           </article>
         ))}
-        
-        {projetosFiltrados.length === 0 && (
-          <p className="text-slate-500 col-span-full text-center py-8">
-            Nenhum projeto encontrado com essa tecnologia.
-          </p>
-        )}
       </div>
     </section>
   );
