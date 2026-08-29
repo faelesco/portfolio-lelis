@@ -12,7 +12,7 @@ interface GithubRepo {
 
 export async function getGithubProjects(username: string): Promise<Project[]> {
   const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`, {
-    next: { revalidate: 3600 }
+    cache: 'no-cache'
   });
 
   if (!response.ok) {
