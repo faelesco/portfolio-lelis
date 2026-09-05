@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface HeroProps {
   name: string;
-  title: string;
+  title: ReactNode;
   bio: string;
   availableForTheMarket?: boolean;
 }
