@@ -26,27 +26,27 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-zinc-200 dark:border-zinc-800 transition-colors">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200 dark:border-zinc-800 transition-colors">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="font-bold text-lg text-zinc-900 dark:text-white uppercase tracking-wider">
-          Portfolio<span className="text-cyan-400">.ts</span>
+          Lelis<span className="text-accent">.ts</span>
         </Link>
 
         <nav className="flex items-center gap-6">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             Home
           </Link>
-          <Link 
-            href="/projects" 
+          <Link
+            href="/projects"
             className="text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             Projetos
           </Link>
-          <Link 
-            href="/experience" 
+          <Link
+            href="/experience"
             className="text-sm font-semibold text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             Experiência
