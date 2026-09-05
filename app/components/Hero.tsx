@@ -1,16 +1,34 @@
+'use client';
+
+import { ReactNode, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface HeroProps {
   name: string;
-  title: string;
+  title: ReactNode;
   bio: string;
   availableForTheMarket?: boolean;
 }
 
 export function Hero({ name, title, bio, availableForTheMarket = false }: HeroProps) {
+  const [showToast, setShowToast] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("raphalelis@outlook.com");
+      setShowToast(true);
+      
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    } catch (err) {
+      console.error("Falha ao copiar o e-mail: ", err);
+    }
+  };
+
   return (
-    <section className="py-8 sm:py-12 md:py-20 px-4 sm:px-6 max-w-5xl mx-auto">
+    <section className="py-8 sm:py-12 md:py-20 px-4 sm:px-6 max-w-5xl mx-auto relative">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-center">
         {/* Lado Esquerdo: Informações */}
         <div className="md:col-span-7 flex flex-col items-start order-2 md:order-1 text-left">
@@ -62,17 +80,15 @@ export function Hero({ name, title, bio, availableForTheMarket = false }: HeroPr
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg>
             </a>
-            <a
-              href="mailto:raphalelis@outlook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="E-mail"
-              className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all"
+            <button
+              onClick={handleCopyEmail}
+              aria-label="Copiar E-mail"
+              className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all cursor-pointer"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
               </svg>
-            </a>
+            </button>
             <a
               href="https://instagram.com/faelesco"
               target="_blank"
@@ -85,7 +101,6 @@ export function Hero({ name, title, bio, availableForTheMarket = false }: HeroPr
               </svg>
             </a>
           </div>
-
         </div>
 
         {/* Lado Direito: Foto Responsiva */}
@@ -105,6 +120,16 @@ export function Hero({ name, title, bio, availableForTheMarket = false }: HeroPr
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Toast Notification (Flutuante no canto inferior direito) */}
+      <div 
+        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 font-bold text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 transform 
+        bg-accent text-white border-2 border-zinc-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
+        ${showToast ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"}`}
+      >
+        <span>✅</span>
+        MANDA BALA NO E-mail!
       </div>
     </section>
   );

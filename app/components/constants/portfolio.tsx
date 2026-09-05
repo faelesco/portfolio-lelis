@@ -1,11 +1,25 @@
 import { Project } from "../../types/project";
 import { Experience } from "../../types/experience";
 import { Education } from "../../types/education";
+import { ImpactMetric } from "../../types/impact";
 
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Raphael Lelis",
-    title: "Tech Lead @ Blip | FullStack Developer | Software Architecture",
+    title: (
+      <>
+        Tech Lead @{" "}
+        <a 
+          href="https://blip.ai" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="underline hover:text-accent transition-colors"
+        >
+          Blip
+        </a>{" "}
+        | FullStack Developer | Software Architecture
+      </>
+    ),
     bio: "Com mais de 8 anos de experiência em programação, sou apaixonado por transformar desafios em soluções inovadoras com foco em arquitetura de software, automação de processos e liderança técnica.",
     availableForTheMarket: false,
   },
@@ -96,4 +110,58 @@ export const PORTFOLIO_DATA = {
       technologies: ["API REST", "JAVASCRIPT", "LÓGICA DE PROGRAMAÇÃO"]
     }
   ] as Education[],
+  impactMetrics: [
+    {
+      id: "1",
+      objective: "[Objetivo] Liderança Técnica",
+      title: "5 Grandes Contas",
+      keyResult: "[KR] Pluxee, Veloe, Nespresso, Alelo e Safra",
+      description: "Liderança de uma esteira de desenvolvimento, focado na definição de arquitetura, gestão de roadmap, mentoria através de PDIs e sempre mão na massa quando é preciso. 🚀",
+      technologies: ["Arquitetura", "Roadmap", "Coaching", "Scrum / Kanban"],
+      colSpan: "md:col-span-7",
+      isHighlight: true,
+    },
+    {
+      id: "2",
+      objective: "[Objetivo] Engenharia Core",
+      title: "+8 Anos",
+      keyResult: "[KR] Experiência em Desenvolvimento",
+      description: "Construção de soluções escaláveis, criação e manutenção de pipelines de CI/CD, desenvolvimento de APIs REST, ampla expêriencia com a plataforma Blip.",
+      technologies: ["C#", ".NET", "APIs REST", "CI/CD", "Azure", "SQL", "React", "Javascript", "Kubectl"],
+      colSpan: "md:col-span-5",
+      isHighlight: false,
+    },
+    {
+      id: "3",
+      objective: "[Objetivo] Escala LATAM",
+      title: "6 Países",
+      keyResult: "[KR] Atendidos Simultaneamente",
+      description: "Desenho e construção de fluxos conversacionais para a conta GM Chevrolet cobrindo Brasil, Argentina, Colômbia, Equador, Chile e Peru.",
+      technologies: ["Plataforma Blip", "Chatbots", "JavaScript", "Integrações"],
+      colSpan: "md:col-span-5",
+      isHighlight: false,
+    },
+    {
+      id: "4",
+      objective: "[Objetivo] Cultura & Crescimento",
+      title: "+5 Anos",
+      keyResult: (
+        <>
+          [KR] De Estagiário a Tech Lead na{" "}
+          <a 
+            href="https://blip.ai" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="underline hover:text-accent transition-colors"
+          >
+            Blip
+          </a>
+        </>
+      ),
+      description: "Atuação contínua desenvolvendo soluções para grandes marcas como Stellantis e Mercado Pago, progredindo da construção de interfaces até a liderança técnica do hub.",
+      technologies: ["Evolução Contínua", "Liderança", "Tomada de Decisão"],
+      colSpan: "md:col-span-7",
+      isHighlight: false,
+    }
+  ] as ImpactMetric[],
 };
