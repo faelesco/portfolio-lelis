@@ -1,12 +1,13 @@
 import { Project } from "../../types/project";
 import { Experience } from "../../types/experience";
+import { Education } from "../../types/education";
 
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Raphael Lelis",
-    title: "Tech Lead at Blip | FullStack Developer | Software Architecture",
+    title: "Tech Lead @ Blip | FullStack Developer | Software Architecture",
     bio: "Com mais de 8 anos de experiência em programação, sou apaixonado por transformar desafios em soluções inovadoras com foco em arquitetura de software, automação de processos e liderança técnica.",
-    availableForTheMarket: true,
+    availableForTheMarket: false,
   },
   meta: {
     title: "Portfólio Pessoal | Raphael Lelis",
@@ -18,7 +19,7 @@ export const PORTFOLIO_DATA = {
       position: "Líder Técnico",
       enterprise: "Blip",
       period: "Março de 2026 — Presente",
-      companyDuration: "5 anos e 10 meses",
+      companyDuration: "5 anos e 11 meses",
       description: [
         "Liderança técnica de hub de desenvolvimento, atendendo simultaneamente grandes contas (Pluxee, Veloe, Nespresso, Alelo e Safra).",
         "Definição de arquitetura de software, avaliação de soluções técnicas e alinhamento estratégico com stakeholders.",
@@ -31,7 +32,7 @@ export const PORTFOLIO_DATA = {
       position: "Software Engineer — Pleno",
       enterprise: "Blip",
       period: "Março de 2024 — Abril de 2026",
-      companyDuration: "5 anos e 10 meses",
+      companyDuration: "5 anos e 11 meses",
       description: [
         "Atuação na conta GM Chevrolet cobrindo Brasil, Argentina, Colômbia, Equador, Chile e Peru.",
         "Desenvolvimento de integrações sistêmicas, soluções reutilizáveis de alta performance e automações.",
@@ -44,7 +45,7 @@ export const PORTFOLIO_DATA = {
       position: "Chatbot Developer — Júnior",
       enterprise: "Blip",
       period: "Novembro de 2020 — Março de 2024",
-      companyDuration: "5 anos e 10 meses",
+      companyDuration: "5 anos e 11 meses",
       description: [
         "Desenvolvimento e manutenção de aplicações de chatbots para marcas Stellantis (Fiat, Jeep e Ram).",
         "Integração de APIs de terceiros utilizando C# e desenvolvimento de interfaces em JavaScript.",
@@ -77,4 +78,22 @@ export const PORTFOLIO_DATA = {
       technologies: ["C#", "ANDROID", "GOOGLE PLAY"]
     }
   ] as Experience[],
+  education: [
+    {
+      id: "1",
+      institution: "PUC Minas",
+      degree: "Ensino Superior, Sistemas de Informação",
+      period: "2018 — 2022",
+      link: "https://www.pucminas.br",
+      technologies: ["API REST", "C#", "ARQUITETURA DE SOFTWARE", "BANCO DE DADOS"]
+    },
+    {
+      id: "2",
+      institution: "Colégio COTEMIG",
+      degree: "Ensino Médio Técnico, Tecnologia da Informação",
+      period: "2015 — 2017",
+      link: "https://www.cotemig.com.br",
+      technologies: ["API REST", "JAVASCRIPT", "LÓGICA DE PROGRAMAÇÃO"]
+    }
+  ] as Education[],
 };
