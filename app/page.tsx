@@ -2,6 +2,7 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Ticker } from "./components/Ticker";
 import { PORTFOLIO_DATA } from "./components/constants/portfolio";
+import { BentoGrid } from "./components/BentoGrid";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <main>
           <Hero {...PORTFOLIO_DATA.personal} />
           <Ticker />
+          <BentoGrid />
         </main>
       </div>
     </div>
