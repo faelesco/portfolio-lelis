@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "./components/Header";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { Footer } from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Portfólio | Raphael Lelis",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <div className="flex-1">
           {children}
         </div>
+        <Footer />
         <ScrollToTop />
       </body>
     </html>
