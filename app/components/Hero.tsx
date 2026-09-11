@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode, useState } from "react";
+import { PhotoStack } from "./PhotoStack";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -156,22 +157,9 @@ export function Hero({ name, title, bio, availableForTheMarket = false }: HeroPr
           </div>
         </div>
 
-        {/* Lado Direito: Foto Responsiva */}
+        {/* Lado Direito: Pilha de Fotos Polaroid (Photo Stack) */}
         <div className="md:col-span-5 flex justify-center md:justify-end order-1 md:order-2">
-          <div className="relative group w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72">
-            <div className="absolute inset-0 translate-x-2 translate-y-2 sm:translate-x-3 sm:translate-y-3 bg-accent border-2 border-zinc-900 dark:border-white transition-transform group-hover:translate-x-4 group-hover:translate-y-4" />
-
-            <div className="relative w-full h-full border-2 border-zinc-900 dark:border-white bg-zinc-900 overflow-hidden">
-              <Image
-                src="/profile.png"
-                alt={name}
-                fill
-                sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, 288px"
-                priority
-                className="object-cover object-top filter grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
-              />
-            </div>
-          </div>
+          <PhotoStack />
         </div>
       </div>
 
