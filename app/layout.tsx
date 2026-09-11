@@ -5,7 +5,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { Footer } from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Portfólio | Raphael Lelis",
+  title: "Lelis 🇧🇷",
   description: "Portfólio Pessoal e Trajetória Profissional",
 };
 
