@@ -20,7 +20,7 @@ export const PORTFOLIO_DATA = {
         | FullStack Developer | Software Architecture
       </>
     ),
-    bio: "Com mais de 8 anos de experiência em programação, sou apaixonado por transformar desafios em soluções inovadoras com foco em arquitetura de software, automação de processos e liderança técnica.",
+    bio: "Direto de Belo Horizonte, sou movido a desafios complexos — seja arquitetando softwares escaláveis, liderando times ou correndo maratonas. Com mais de 8 anos de experiência em programação, sou apaixonado por tecnologia e por construir um legado que dê orgulho à minha filha, Liz. #GoStepBeyond 🚀",
     availableForTheMarket: false,
   },
   meta: {
