@@ -35,7 +35,7 @@ export const PORTFOLIO_DATA = {
       period: "Março de 2026 — Presente",
       companyDuration: "5 anos e 11 meses",
       description: [
-        "Liderança técnica de hub de desenvolvimento, atendendo simultaneamente grandes contas (Pluxee, Veloe, Nespresso, Alelo e Safra).",
+        "Liderança técnica de hub de desenvolvimento, atendendo simultaneamente grandes contas (Pluxee, Veloe, Nespresso, Alelo, SmartFit e Ipiranga).",
         "Definição de arquitetura de software, avaliação de soluções técnicas e alinhamento estratégico com stakeholders.",
         "Gestão de roadmap, priorização de demandas e mentoria/coaching contínuo para o time de engenharia."
       ],
@@ -114,10 +114,10 @@ export const PORTFOLIO_DATA = {
     {
       id: "1",
       objective: "[Objetivo] Liderança Técnica",
-      title: "5 Grandes Contas",
-      keyResult: "[KR] Pluxee, Veloe, Nespresso, Alelo e Safra",
+      title: "6 Grandes Contas",
+      keyResult: "[KR] SmartFit, Ipiranga, Pluxee, Veloe, Nespresso e Alelo",
       description: "Liderança de uma esteira de desenvolvimento, focado na definição de arquitetura, gestão de roadmap, mentoria através de PDIs e sempre mão na massa quando é preciso. 🚀",
-      technologies: ["Arquitetura", "Roadmap", "Coaching", "Scrum / Kanban"],
+      technologies: ["Liderança", "Gestão de Clientes", "Arquitetura de Software", "Roadmap", "PDI", "Scrum / Kanban", "API Rest C#"],
       colSpan: "md:col-span-7",
       isHighlight: true,
     },
@@ -158,7 +158,7 @@ export const PORTFOLIO_DATA = {
           </a>
         </>
       ),
-      description: "Atuação contínua desenvolvendo soluções para grandes marcas como Stellantis e Mercado Pago, progredindo da construção de interfaces até a liderança técnica do hub.",
+      description: "Atuação contínua desenvolvendo soluções para grandes marcas como Stellantis, GM, Safra e Mercado Pago, progredindo da construção de interfaces até a liderança técnica do hub.",
       technologies: ["Evolução Contínua", "Liderança", "Tomada de Decisão"],
       colSpan: "md:col-span-7",
       isHighlight: false,
