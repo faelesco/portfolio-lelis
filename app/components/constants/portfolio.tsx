@@ -150,10 +150,10 @@ export const PORTFOLIO_DATA = {
     {
       id: "4",
       objective: "Cultura & Crescimento",
-      title: "+5 Anos",
+      title: "+6 Anos",
       keyResult: (
         <>
-          De Estagiário a Tech Lead na{" "}
+          De Estagiário a Tech Lead & Arquiteto de Soluções na{" "}
           <a 
             href="https://blip.ai" 
             target="_blank" 
