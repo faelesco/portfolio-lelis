@@ -10,30 +10,41 @@ interface GithubRepo {
   fork: boolean;
 }
 
-export async function getGithubProjects(username: string): Promise<Project[]> {
-  const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`, {
-    cache: "no-cache"
-  });
+const REVALIDATE_SECONDS = 60 * 60;
 
-  if (!response.ok) {
-    console.error("Erro ao buscar repositórios do GitHub");
+export async function getGithubProjects(username: string): Promise<Project[]> {
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
+      {
+        headers: { Accept: "application/vnd.github+json" },
+        next: { revalidate: REVALIDATE_SECONDS },
+      }
+    );
+
+    if (!response.ok) {
+      console.error(`GitHub respondeu ${response.status} ao listar repositórios`);
+      return [];
+    }
+
+    const repos: GithubRepo[] = await response.json();
+
+    return repos
+      .filter((repo) => !repo.fork && repo.topics?.includes("portfolio"))
+      .slice(0, 10)
+      .map((repo) => {
+        const tags = repo.topics.filter((topic) => topic !== "portfolio");
+        return {
+          id: String(repo.id),
+          title: repo.name.replace(/-/g, " "),
+          description: repo.description ?? "",
+          tags: tags.length > 0 ? tags : ["GitHub"],
+          linkGithub: repo.html_url,
+          linkDeploy: repo.homepage || undefined,
+        };
+      });
+  } catch (error) {
+    console.error("Falha ao buscar repositórios do GitHub", error);
     return [];
   }
-
-  const repos: GithubRepo[] = await response.json();
-
-  return repos
-    .filter((repo) => !repo.fork)
-    .filter((repo) => repo.topics && repo.topics.includes("portfolio"))
-    .slice(0, 10)
-    .map((repo) => ({
-      id: String(repo.id),
-      title: repo.name.replace(/-/g, " "),
-      description: repo.description || "",
-      tags: repo.topics.filter(t => t !== 'portfolio').length > 0 
-        ? repo.topics.filter(t => t !== 'portfolio') 
-        : ["GitHub"],
-      linkGithub: repo.html_url,
-      linkDeploy: repo.homepage || undefined,
-    }));
 }
