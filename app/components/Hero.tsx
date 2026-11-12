@@ -1,9 +1,8 @@
-'use client';
-
-import { ReactNode, useState } from "react";
-import { PhotoStack } from "./PhotoStack";
-import Image from "next/image";
+import { ReactNode } from "react";
 import Link from "next/link";
+import { PhotoStack } from "./PhotoStack";
+import { CopyEmailButton } from "./CopyEmailButton";
+import { SocialLinks } from "./SocialLinks";
 
 interface HeroProps {
   name: string;
@@ -13,164 +12,41 @@ interface HeroProps {
 }
 
 export function Hero({ name, title, bio, availableForTheMarket = false }: HeroProps) {
-  const [showToast, setShowToast] = useState(false);
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText("raphalelis@outlook.com");
-      setShowToast(true);
-
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-    } catch (err) {
-      console.error("Falha ao copiar o e-mail: ", err);
-    }
-  };
-
   return (
-    <section className="py-8 sm:py-12 md:py-20 px-4 sm:px-6 max-w-5xl mx-auto relative">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-center">
-        {/* Lado Esquerdo: Informações */}
-        <div className="md:col-span-7 flex flex-col items-start order-2 md:order-1 text-left">
-          {availableForTheMarket && (
-            <div className="mb-4 sm:mb-6 inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Disponível para oportunidades
-            </div>
-          )}
+    <section className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-12 md:gap-12 md:py-24">
+      <div className="order-2 flex flex-col items-start md:order-1 md:col-span-7">
+        {availableForTheMarket && (
+          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+            Disponível para oportunidades
+          </span>
+        )}
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-900 dark:text-white uppercase mb-2 break-words w-full">
-            {name}
-          </h1>
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-white">
+          {name}
+        </h1>
 
-          <h2 className="text-base sm:text-lg md:text-xl font-bold text-accent uppercase tracking-wide mb-4 sm:mb-6">
-            {title}
-          </h2>
+        <p className="mt-4 text-base font-medium leading-relaxed text-accent sm:text-lg">{title}</p>
 
-          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-6 sm:mb-8">
-            {bio}
-          </p>
+        <p className="mt-6 max-w-prose text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{bio}</p>
 
-          {/* Botões de Ação */}
-          <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-3 sm:gap-4 mb-6">
-            <Link
-              href="/experience"
-              className="w-full sm:w-auto text-center px-6 py-3 bg-zinc-900 text-white dark:bg-white dark:text-black font-black uppercase text-xs tracking-wider hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-all"
-            >
-              Trajetória
-            </Link>
-            <Link
-              href="/projects"
-              className="w-full sm:w-auto text-center px-6 py-3 bg-accent text-white font-black uppercase text-xs tracking-wider hover:bg-accent-hover transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
-            >
-              Projetos →
-            </Link>
-          </div>
-
-          {/* Ícones de Redes Sociais / Contato */}
-          <div className="flex items-center gap-3">
-            <div className="relative group flex items-center justify-center">
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 sm:w-56 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-50 origin-bottom">
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-zinc-900 rotate-45 border-b-2 border-r-2 border-zinc-900 dark:border-white z-0" />
-                <div className="relative z-10 bg-white dark:bg-zinc-900 border-2 border-zinc-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] p-1.5">
-                  <Image
-                    src="/linkedin-preview.png"
-                    alt="Preview do LinkedIn"
-                    width={250}
-                    height={300}
-                    className="w-full h-auto object-cover rounded-lg border border-zinc-200 dark:border-zinc-800"
-                  />
-                </div>
-              </div>
-              <a
-                href="https://www.linkedin.com/in/raphael-lelis"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-md text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all relative z-10"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                </svg>
-              </a>
-            </div>
-            <button
-              onClick={handleCopyEmail}
-              aria-label="Copiar E-mail"
-              className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all cursor-pointer"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
-            </button>
-            <div className="relative group flex items-center justify-center">
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 sm:w-56 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-50 origin-bottom">
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-zinc-900 rotate-45 border-b-2 border-r-2 border-zinc-900 dark:border-white z-0" />
-                <div className="relative z-10 bg-white dark:bg-zinc-900 border-2 border-zinc-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] p-1.5">
-                  <Image
-                    src="/instagram-preview.png"
-                    alt="Preview do Instagram"
-                    width={250}
-                    height={300}
-                    className="w-full h-auto object-cover rounded-lg border border-zinc-200 dark:border-zinc-800"
-                  />
-                </div>
-              </div>
-              <a
-                href="https://instagram.com/faelesco"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-md text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all relative z-10"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                </svg>
-              </a>
-            </div>
-            <div className="relative group flex items-center justify-center">
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 sm:w-56 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-50 origin-bottom">
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-zinc-900 rotate-45 border-b-2 border-r-2 border-zinc-900 dark:border-white z-0" />
-                <div className="relative z-10 bg-white dark:bg-zinc-900 border-2 border-zinc-900 dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] p-1.5">
-                  <Image
-                    src="/whatsapp-preview.png"
-                    alt="Preview do WhatsApp"
-                    width={250}
-                    height={300}
-                    className="w-full h-auto object-cover rounded-lg border border-zinc-200 dark:border-zinc-800"
-                  />
-                </div>
-              </div>
-              <a
-                href="https://wa.me/5531971683710?text=Olá%20Rapha!"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="p-2.5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-md text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent transition-all relative z-10"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-                </svg>
-              </a>
-            </div>
-          </div>
+        <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <Link href="/projects" className="btn-primary">
+            Ver projetos
+          </Link>
+          <Link href="/experience" className="btn-secondary">
+            Trajetória profissional
+          </Link>
         </div>
 
-        {/* Lado Direito: Pilha de Fotos Polaroid (Photo Stack) */}
-        <div className="md:col-span-5 flex justify-center md:justify-end order-1 md:order-2">
-          <PhotoStack />
+        <div className="mt-8 flex items-center gap-2">
+          <SocialLinks />
+          <CopyEmailButton iconOnly />
         </div>
       </div>
 
-      {/* Toast Notification (Flutuante no canto inferior direito) */}
-      <div
-        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 font-bold text-xs sm:text-sm uppercase tracking-wide transition-all duration-300 transform 
-        bg-accent text-white border-2 border-zinc-900 dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]
-        ${showToast ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"}`}
-      >
-        <span>✅</span>
-        MANDA BALA NO E-mail!
+      <div className="order-1 flex justify-center md:order-2 md:col-span-5 md:justify-end">
+        <PhotoStack />
       </div>
     </section>
   );

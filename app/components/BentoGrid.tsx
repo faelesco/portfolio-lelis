@@ -1,73 +1,74 @@
-// app/components/BentoGrid.tsx
 import { PORTFOLIO_DATA } from "./constants/portfolio";
+import { SectionHeading } from "./SectionHeading";
 
 export function BentoGrid() {
   return (
-    <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto">
-      <h2 className="text-3xl md:text-5xl font-black mb-8 text-zinc-900 dark:text-white uppercase tracking-tight">
-        Impacto & Stack <span className="text-accent">.</span>
-      </h2>
+    <section aria-labelledby="impacto" className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+      <SectionHeading
+        id="impacto"
+        title="Impacto & stack"
+        description="Resultados e áreas de atuação ao longo da carreira."
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
         {PORTFOLIO_DATA.impactMetrics.map((metric) => (
-          <div
+          <article
             key={metric.id}
-            className={`${metric.colSpan} p-6 sm:p-8 transition-all flex flex-col justify-between ${
+            className={`${metric.colSpan} flex flex-col justify-between rounded-2xl border p-6 sm:p-8 ${
               metric.isHighlight
-                ? "bg-accent border border-accent-hover"
-                : "bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 hover:border-accent"
-            }`}
+                ? "border-accent bg-accent text-white"
+                : "border-zinc-200 bg-zinc-50 hover:border-accent/60 dark:border-zinc-800 dark:bg-zinc-900/40"
+            } transition-colors`}
           >
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <span
-                  className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 ${
-                    metric.isHighlight
-                      ? "bg-black/20 text-white border border-white/20"
-                      : "bg-zinc-200 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-300 dark:border-zinc-800"
-                  }`}
-                >
-                  {metric.objective}
-                </span>
-              </div>
+            <div>
+              <p
+                className={`text-xs font-semibold uppercase tracking-wider ${
+                  metric.isHighlight ? "text-white/80" : "text-zinc-500 dark:text-zinc-400"
+                }`}
+              >
+                {metric.objective}
+              </p>
+
               <h3
-                className={`text-4xl font-black uppercase mb-2 ${
+                className={`mt-3 text-3xl font-bold tracking-tight sm:text-4xl ${
                   metric.isHighlight ? "text-white" : "text-accent"
                 }`}
               >
                 {metric.title}
               </h3>
+
               <p
-                className={`text-sm font-bold uppercase tracking-wide mb-2 ${
+                className={`mt-2 text-sm font-semibold ${
                   metric.isHighlight ? "text-white" : "text-zinc-900 dark:text-white"
                 }`}
               >
                 {metric.keyResult}
               </p>
+
               <p
-                className={`text-sm font-normal leading-relaxed ${
+                className={`mt-3 text-sm leading-relaxed ${
                   metric.isHighlight ? "text-white/90" : "text-zinc-600 dark:text-zinc-400"
                 }`}
               >
                 {metric.description}
               </p>
             </div>
-            
-            <div className="flex flex-wrap gap-2">
+
+            <ul className="mt-6 flex flex-wrap gap-2">
               {metric.technologies.map((tech) => (
-                <span
+                <li
                   key={tech}
-                  className={`px-2.5 py-1 text-[10px] font-bold uppercase ${
+                  className={`rounded-md px-2.5 py-1 text-xs font-medium ${
                     metric.isHighlight
-                      ? "bg-black/20 text-white border border-white/20"
-                      : "bg-zinc-200 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-800"
+                      ? "bg-white/15 text-white"
+                      : "border border-zinc-200 bg-white text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
                   }`}
                 >
                   {tech}
-                </span>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </article>
         ))}
       </div>
     </section>
