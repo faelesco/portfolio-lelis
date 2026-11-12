@@ -1,4 +1,3 @@
-import { Project } from "../../types/project";
 import { Experience } from "../../types/experience";
 import { Education } from "../../types/education";
 import { ImpactMetric } from "../../types/impact";
@@ -24,8 +23,15 @@ export const PORTFOLIO_DATA = {
     availableForTheMarket: false,
   },
   meta: {
-    title: "Portfólio Pessoal | Raphael Lelis",
-    description: "Projetos e experiências desenvolvidos por Raphael Lelis.",
+    title: "Raphael Lelis | Tech Lead & FullStack Developer & Arquiteto de Soluções",
+    description: "Projetos, experiências e trajetória profissional de Raphael Lelis — Tech Lead na Blip, arquitetura de software e desenvolvimento full stack.",
+  },
+  contact: {
+    email: "raphalelis@outlook.com",
+    linkedin: "https://www.linkedin.com/in/raphael-lelis",
+    github: "https://github.com/faelesco",
+    instagram: "https://instagram.com/faelesco",
+    whatsapp: "https://wa.me/5531971683710?text=Olá%20Rapha!",
   },
   experiences: [
     {
@@ -33,7 +39,7 @@ export const PORTFOLIO_DATA = {
       position: "Líder Técnico",
       enterprise: "Blip",
       period: "Março de 2026 — Presente",
-      companyDuration: "5 anos e 11 meses",
+      companyDuration: "6 anos e 1 mês",
       description: [
         "Liderança técnica de hub de desenvolvimento, atendendo simultaneamente grandes contas (Pluxee, Veloe, Nespresso, Alelo, SmartFit e Ipiranga).",
         "Definição de arquitetura de software, avaliação de soluções técnicas e alinhamento estratégico com stakeholders.",
@@ -113,9 +119,9 @@ export const PORTFOLIO_DATA = {
   impactMetrics: [
     {
       id: "1",
-      objective: "[Objetivo] Liderança Técnica",
+      objective: "Liderança Técnica",
       title: "6 Grandes Contas",
-      keyResult: "[KR] SmartFit, Ipiranga, Pluxee, Veloe, Nespresso e Alelo",
+      keyResult: "SmartFit, Ipiranga, Pluxee, Veloe, Nespresso e Alelo",
       description: "Liderança de uma esteira de desenvolvimento, focado na definição de arquitetura, gestão de roadmap, mentoria através de PDIs e sempre mão na massa quando é preciso. 🚀",
       technologies: ["Liderança", "Gestão de Clientes", "Arquitetura de Software", "Roadmap", "PDI", "Scrum / Kanban", "API Rest C#"],
       colSpan: "md:col-span-7",
@@ -123,9 +129,9 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "2",
-      objective: "[Objetivo] Engenharia Core",
+      objective: "Engenharia Core",
       title: "+8 Anos",
-      keyResult: "[KR] Experiência em Desenvolvimento",
+      keyResult: "Experiência em Desenvolvimento",
       description: "Construção de soluções escaláveis, criação e manutenção de pipelines de CI/CD, desenvolvimento de APIs REST, ampla expêriencia com a plataforma Blip.",
       technologies: ["C#", ".NET", "APIs REST", "CI/CD", "Azure", "SQL", "React", "Javascript", "Kubectl"],
       colSpan: "md:col-span-5",
@@ -133,9 +139,9 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "3",
-      objective: "[Objetivo] Escala LATAM",
+      objective: "Escala LATAM",
       title: "6 Países",
-      keyResult: "[KR] Atendidos Simultaneamente",
+      keyResult: "Atendidos Simultaneamente",
       description: "Desenho e construção de fluxos conversacionais para a conta GM Chevrolet cobrindo Brasil, Argentina, Colômbia, Equador, Chile e Peru.",
       technologies: ["Plataforma Blip", "Chatbots", "JavaScript", "Integrações"],
       colSpan: "md:col-span-5",
@@ -143,11 +149,11 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "4",
-      objective: "[Objetivo] Cultura & Crescimento",
+      objective: "Cultura & Crescimento",
       title: "+5 Anos",
       keyResult: (
         <>
-          [KR] De Estagiário a Tech Lead na{" "}
+          De Estagiário a Tech Lead na{" "}
           <a 
             href="https://blip.ai" 
             target="_blank" 

@@ -1,68 +1,69 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useState } from "react";
+import { motion, PanInfo } from "framer-motion";
+import Image from "next/image";
 
 const INITIAL_CARDS = [
-  { id: 1, src: "/foto1.jpg", rotate: -12 },
+  { id: 1, src: "/foto1.jpg", rotate: -10 },
   { id: 2, src: "/foto2.jpg", rotate: -4 },
-  { id: 3, src: "/foto3.jpg", rotate: 6 },
-  { id: 4, src: "/foto4.jpg", rotate: 12 },
+  { id: 3, src: "/foto3.jpg", rotate: 4 },
+  { id: 4, src: "/foto4.jpg", rotate: 10 },
 ];
+
+const SWIPE_THRESHOLD = 60;
 
 export function PhotoStack() {
   const [cards, setCards] = useState(INITIAL_CARDS);
 
-  const handleDragEnd = (e: any, info: any) => {
-    const offset = Math.abs(info.offset.x) + Math.abs(info.offset.y);
-    
-    if (offset > 60) {
-      setCards((prev) => {
-        const newCards = [...prev];
-        const topCard = newCards.pop();
-        if (topCard) newCards.unshift(topCard);
-        return newCards;
-      });
-    }
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const distance = Math.abs(info.offset.x) + Math.abs(info.offset.y);
+    if (distance <= SWIPE_THRESHOLD) return;
+
+    setCards((prev) => {
+      const next = [...prev];
+      const top = next.pop();
+      if (top) next.unshift(top);
+      return next;
+    });
   };
 
   return (
-    <div className="relative w-56 h-56 sm:w-72 sm:h-72 flex items-center justify-center mb-8 md:mb-0">
+    <div
+      className="relative flex h-64 w-64 items-center justify-center sm:h-80 sm:w-80"
+      role="group"
+      aria-label="Fotos de Raphael Lelis. Arraste a foto de cima para trocar."
+    >
       {cards.map((card, index) => {
         const isTop = index === cards.length - 1;
 
         return (
           <motion.div
             key={card.id}
-            className="absolute w-44 h-52 sm:w-56 sm:h-64 bg-white dark:bg-zinc-900 border-2 border-zinc-900 dark:border-white p-2 pb-10 sm:pb-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
-            style={{
-              zIndex: index,
-              cursor: isTop ? "grab" : "auto",
-            }}
-            initial={{ rotate: card.rotate, scale: 1 }}
+            className="absolute h-56 w-44 touch-none border border-zinc-200 bg-white p-2 pb-10 shadow-xl sm:h-64 sm:w-52 sm:pb-12 dark:border-zinc-700 dark:bg-zinc-900"
+            style={{ zIndex: index, cursor: isTop ? "grab" : "default" }}
+            initial={false}
             animate={{
               rotate: isTop ? 0 : card.rotate,
-              scale: isTop ? 1.05 : 1,
-              y: isTop ? -10 : 0,
+              scale: isTop ? 1.04 : 1,
+              y: isTop ? -8 : 0,
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
             drag={isTop ? true : false}
             dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-            dragElastic={1}
+            dragElastic={0.6}
             onDragEnd={handleDragEnd}
-            whileTap={{ cursor: "grabbing" }}
+            whileTap={isTop ? { cursor: "grabbing" } : undefined}
           >
-            <div className="relative w-full h-full border-2 border-zinc-900 dark:border-white overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+            <div className="relative h-full w-full overflow-hidden bg-zinc-200 dark:bg-zinc-800">
               <Image
                 src={card.src}
-                alt="Foto Raphael Lelis"
+                alt={isTop ? "Foto de Raphael Lelis" : ""}
                 fill
-                sizes="(max-width: 640px) 176px, 224px"
+                sizes="(max-width: 640px) 176px, 208px"
                 priority={isTop}
                 draggable={false}
-                className="object-cover transition-all duration-300 pointer-events-none"
+                className="pointer-events-none object-cover"
               />
             </div>
           </motion.div>
